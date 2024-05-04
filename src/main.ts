@@ -1,4 +1,4 @@
-import { createApp } from 'vue'
+import { createApp, watchPostEffect } from 'vue'
 import './style.scss'
 import App from './App.vue'
 import vuetify from '@plugins/vuetify/Vuetify'
@@ -8,5 +8,9 @@ const VUE = createApp(App)
 
 VUE.use(I18n)
 VUE.use(vuetify)
+
+watchPostEffect(() => {
+    document.documentElement.lang = VUE.config.globalProperties.$i18n.locale
+});
 
 VUE.mount('#app')

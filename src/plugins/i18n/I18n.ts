@@ -47,7 +47,7 @@ const messages: MessageLanguages = {
 
 export default createI18n<[MessageSchema], FallbackLocale, false, {}>({
     legacy: false, // Vuetify does not support the legacy mode of vue-i18n, you must set `false`, to use Composition API
-    locale: 'vi',
+    locale: document.documentElement.lang,
     fallbackLocale: ['en', 'ja', 'ko', 'vi'],
     messages,
     datetimeFormats,
