@@ -11,10 +11,10 @@ function toggleTheme() {
 const drawer = ref(true);
 
 const languages = [
-  { label: 'en-US', value: 'en' },
-  { label: 'ja-JP', value: 'ja' },
-  { label: 'ko-KR', value: 'ko' },
-  { label: 'vi-VN', value: 'vi' },
+  { label: 'en-US', value: 'en', flag: '' },
+  { label: 'ja-JP', value: 'ja', flag: '' },
+  { label: 'ko-KR', value: 'ko', flag: '' },
+  { label: 'vi-VN', value: 'vi', flag: '' },
 ];
 </script>
 
@@ -35,17 +35,26 @@ const languages = [
       <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
       <v-app-bar-title>{{ $env.VITE_APP_TITLE }}</v-app-bar-title>
       <v-btn icon="mdi-alarm-light" @click="toggleTheme" />
-      <v-select v-model="$i18n.locale" :items="languages" item-title="label" item-value="value" />
+      <v-btn color="primary">
+        <v-icon icon="mdi-translate" />
+
+        <v-menu activator="parent">
+          <v-list @click:select="event => $i18n.locale = event.id as string">
+            <v-list-item v-for="({ label, value, flag }, index) in languages" :key="index" :value="value">
+              <template v-slot:prepend v-if="flag">
+                <v-icon :icon="flag"></v-icon>
+              </template>
+              <v-list-item-title>{{ label }}</v-list-item-title>
+            </v-list-item>
+          </v-list>
+        </v-menu>
+      </v-btn>
     </v-app-bar>
 
     <v-main style="width: 100vw;">
-      <router-view v-slot="{ Component, route }">
-        <transition :name="route.meta.transition || 'fade'" :mode="'out-in'">
-          <section>
-            <component :is="Component" :key="route.path" />
-          </section>
-        </transition>
-      </router-view>
+      <transition :name="$route.meta.transition" :mode="'out-in'">
+        <router-view />
+      </transition>
     </v-main>
 
     <v-footer app>
@@ -54,16 +63,6 @@ const languages = [
   </v-layout>
 </template>
 
-<style lang="scss">
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.5s ease;
-}
-
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
-}
-</style>
+<style lang="scss"></style>
 
 <i18n></i18n>

@@ -1,4 +1,7 @@
 <script setup lang="ts">
+import { ref } from 'vue';
+
+const show = ref(false);
 </script>
 
 <template>
@@ -6,6 +9,11 @@
         <v-icon icon="mdi-home" />
         <div>{{ $t('hello') }}</div>
     </div>
+
+    <v-btn @click="show = !show">Click</v-btn>
+    <transition>
+        <h1 v-if="show">Show {{ show }}</h1>
+    </transition>
 
     <v-container>
         <v-row>
@@ -28,4 +36,3 @@
 </template>
 
 <style lang="scss"></style>
-import { ref, readonly, computed } from 'vue';
