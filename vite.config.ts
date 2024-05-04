@@ -1,10 +1,20 @@
-import { defineConfig } from 'vite'
+import { ProxyOptions, defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import { fileURLToPath } from 'node:url'
 import autoprefixer from 'autoprefixer'
 
 const componentsAliases = ['atoms', 'modecules', 'organisms', 'templates', 'pages'];
-const aliases = ['constants', 'models', 'utils', 'assets', 'plugins'];
+const aliases = ['constants', 'models', 'utils', 'assets', 'plugins', 'apis'];
+
+const proxy: (url: string) => Record<string, string | ProxyOptions> = (url: string) => {
+  return {
+    '/api': {
+      target: url,
+      changeOrigin: true,
+      rewrite: (path) => path.replace(/^\/api/, ''),
+    }
+  }
+}
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -25,5 +35,12 @@ export default defineConfig({
         find: `@${alias}`, replacement: fileURLToPath(new URL(`./src/${alias}`, import.meta.url))
       }))
     )
-  }
+  },
+  envDir: './env',
+  server: {
+    proxy: proxy('http://localhost:5173/mocks')
+  },
+  preview: {
+    proxy: proxy('http://localhost:4173/mocks')
+  },
 })

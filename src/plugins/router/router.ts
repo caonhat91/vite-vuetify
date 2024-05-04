@@ -1,6 +1,6 @@
-import { createMemoryHistory, createRouter } from 'vue-router'
+import { NavigationFailure, RouteLocationNormalized, createMemoryHistory, createRouter } from 'vue-router'
 
-import routes from './routes';
+import routes from '@constants/routes';
 
 const router = createRouter({
     history: createMemoryHistory(),
@@ -28,7 +28,7 @@ const router = createRouter({
     }
 })
 
-router.beforeEach((to, from) => {
+router.beforeEach((to: RouteLocationNormalized) => {
     // instead of having to check every route record with
     // to.matched.some(record => record.meta.requiresAuth)
     if (to.meta.requiresAuth) {
@@ -42,15 +42,13 @@ router.beforeEach((to, from) => {
     }
 })
 
-router.afterEach((to, from, failure) => {
+router.afterEach((to: RouteLocationNormalized, from: RouteLocationNormalized, failure: NavigationFailure | void) => {
     if (failure) {
         // sendToAnalytics(to, from, failure)
     }
     const toDepth = to.path.split('/').length
     const fromDepth = from.path.split('/').length
     to.meta.transition = toDepth < fromDepth ? 'slide-right' : 'slide-left'
-
-    to.meta.transition = 'fade'
 })
 
 export default router;

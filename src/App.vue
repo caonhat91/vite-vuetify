@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { computed, readonly, ref } from 'vue';
 import { useTheme } from 'vuetify'
 
 const theme = useTheme()
@@ -29,16 +28,18 @@ const languages = [
       </v-list>
     </v-navigation-drawer>
 
-    <v-app-bar title="Application bar">
+    <v-app-bar :title="$env.VITE_APP_TITLE">
       <v-btn icon="mdi-alarm-light" @click="toggleTheme" />
       <v-select v-model="$i18n.locale" :items="languages" item-title="label" item-value="value" />
     </v-app-bar>
 
     <v-main>
       <router-view v-slot="{ Component, route }">
-        <transition :name="route.meta.transition || 'fade'" :mode="'default'">
-          <component :is="Component" :key="route.path" />
-        </transition>
+        <!-- <transition :name="route.meta.transition || 'fade'" :mode="'out-in'">
+          <section> -->
+        <component :is="Component" :key="route.path" />
+        <!-- </section>
+        </transition> -->
       </router-view>
     </v-main>
 

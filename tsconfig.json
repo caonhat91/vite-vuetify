@@ -19,6 +19,25 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
+    
+    /* Client Types */
+    "types": ["vite/client"],
+
+    /* Path */
+    "baseUrl": "./",
+    "paths": {
+      "@atoms/*": ["src/components/atoms/*"],
+      "@modecules/*": ["src/components/modecules/*"],
+      "@organisms/*": ["src/components/organisms/*"],
+      "@templates/*": ["src/components/templates/*"],
+      "@pages/*": ["src/components/pages/*"],
+      "@constants/*": ["src/constants/*"],
+      "@models/*": ["src/models/*"],
+      "@utils/*": ["src/utils/*"],
+      "@assets/*": ["src/assets/*"],
+      "@plugins/*": ["src/plugins/*"],
+      "@apis/*": ["src/apis/*"],
+    },
   },
   "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue"],
   "references": [{ "path": "./tsconfig.node.json" }]

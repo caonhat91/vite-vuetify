@@ -5,25 +5,7 @@
     "module": "ESNext",
     "moduleResolution": "bundler",
     "allowSyntheticDefaultImports": true,
-    "strict": true,
-    
-    /* Client Types */
-    "types": ["vite/client"],
-
-    /* Path */
-    "baseUrl": "./",
-    "paths": {
-      "@atoms/*": ["src/components/atoms/*"],
-      "@modecules/*": ["src/components/modecules/*"],
-      "@organisms/*": ["src/components/organisms/*"],
-      "@templates/*": ["src/components/templates/*"],
-      "@pages/*": ["src/components/pages/*"],
-      "@constants/*": ["src/constants/*"],
-      "@models/*": ["src/models/*"],
-      "@utils/*": ["src/utils/*"],
-      "@assets/*": ["src/assets/*"],
-      "@plugins/*": ["src/plugins/*"],
-    },
+    "strict": true
   },
-  "include": ["src/**/*.d.ts", "vite.config.ts"]
+  "include": ["src/*.d.ts", "vite.config.ts"]
 }
