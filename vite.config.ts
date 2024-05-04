@@ -3,8 +3,8 @@ import vue from '@vitejs/plugin-vue'
 import { fileURLToPath } from 'node:url'
 import autoprefixer from 'autoprefixer'
 
-const componentsAliases = ['atoms', 'modecules', 'organisms', 'templates'];
-const aliases = ['pages', 'constants', 'models', 'utils', 'assets', 'plugins'];
+const componentsAliases = ['atoms', 'modecules', 'organisms', 'templates', 'pages'];
+const aliases = ['constants', 'models', 'utils', 'assets', 'plugins'];
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -25,5 +25,5 @@ export default defineConfig({
         find: `@${alias}`, replacement: fileURLToPath(new URL(`./src/${alias}`, import.meta.url))
       }))
     )
-  },
+  }
 })
