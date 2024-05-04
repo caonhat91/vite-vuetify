@@ -52,9 +52,15 @@ const languages = [
     </v-app-bar>
 
     <v-main style="width: 100vw;">
-      <transition :name="$route.meta.transition" :mode="'out-in'">
-        <router-view />
-      </transition>
+
+      <router-view v-slot="{ Component, route }">
+        {{ route.meta.transition }}
+        <transition :name="route.meta.transition || 'fade-transition'" :mode="'out-in'">
+          <keep-alive>
+            <component :is="Component" :key="route.path" />
+          </keep-alive>
+        </transition>
+      </router-view>
     </v-main>
 
     <v-footer app>

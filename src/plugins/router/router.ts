@@ -46,7 +46,9 @@ router.afterEach((to: RouteLocationNormalized, from: RouteLocationNormalized, fa
     if (failure) {
         // sendToAnalytics(to, from, failure)
     }
-    to.meta.transition = 'slide-x-transition'
+    const toDepth = to.path.split('/').length
+    const fromDepth = from.path.split('/').length
+    to.meta.transition = toDepth < fromDepth ? 'slide-x-reverse-transition' : 'slide-x-transition'
 })
 
 export default router;

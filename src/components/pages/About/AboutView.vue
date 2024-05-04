@@ -14,8 +14,10 @@ const user = ref();
 </script>
 
 <template>
-    <h1>About page</h1>
-    <pre>{{ user }}</pre>
+    <section>
+        <h1>About page</h1>
+        <pre>{{ user }}</pre>
+    </section>
 </template>
 
 <style lang="scss"></style>
