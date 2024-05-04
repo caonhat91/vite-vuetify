@@ -21,6 +21,7 @@ const languages = [
 <template>
   <v-layout ref="app">
     <v-navigation-drawer permanent v-model="drawer">
+
       <v-list nav>
         <v-list-item title="Navigation" subtitle="Vuetify"></v-list-item>
         <v-divider />
@@ -29,15 +30,18 @@ const languages = [
         <v-list-item link title="Login" to="/login"></v-list-item>
         <v-list-item link title="Not Found" to="/404"></v-list-item>
       </v-list>
+
     </v-navigation-drawer>
 
     <v-app-bar>
       <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
+
       <v-app-bar-title>{{ $env.VITE_APP_TITLE }}</v-app-bar-title>
+
       <v-btn icon="mdi-alarm-light" @click="toggleTheme" />
+
       <v-btn color="primary">
         <v-icon icon="mdi-translate" />
-
         <v-menu activator="parent">
           <v-list @click:select="event => $i18n.locale = event.id as string">
             <v-list-item v-for="({ label, value, flag }, index) in languages" :key="index" :value="value">
@@ -54,13 +58,13 @@ const languages = [
     <v-main style="width: 100vw;">
 
       <router-view v-slot="{ Component, route }">
-        {{ route.meta.transition }}
         <transition :name="route.meta.transition || 'fade-transition'" :mode="'out-in'">
           <keep-alive>
             <component :is="Component" :key="route.path" />
           </keep-alive>
         </transition>
       </router-view>
+
     </v-main>
 
     <v-footer app>
