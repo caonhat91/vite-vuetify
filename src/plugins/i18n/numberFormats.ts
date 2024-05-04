@@ -12,6 +12,28 @@ const numberFormats: Record<string, IntlNumberFormat> = {
             style: 'percent', useGrouping: false
         }
     },
+    'ja': {
+        currency: {
+            style: 'currency', currency: 'JPY'
+        },
+        decimal: {
+            style: 'decimal', minimumSignificantDigits: 2, maximumSignificantDigits: 2
+        },
+        percent: {
+            style: 'percent', useGrouping: false
+        }
+    },
+    'ko': {
+        currency: {
+            style: 'currency', currency: 'KRW'
+        },
+        decimal: {
+            style: 'decimal', minimumSignificantDigits: 2, maximumSignificantDigits: 2
+        },
+        percent: {
+            style: 'percent', useGrouping: false
+        }
+    },
     'vi': {
         currency: {
             style: 'currency', currency: 'VND', useGrouping: true

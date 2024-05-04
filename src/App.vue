@@ -8,6 +8,13 @@ function toggleTheme() {
   theme.global.name.value = theme.global.current.value.dark ? 'light' : 'dark'
 }
 
+const languages = [
+  { label: 'en-US', value: 'en' },
+  { label: 'ja-JP', value: 'ja' },
+  { label: 'ko-KR', value: 'ko' },
+  { label: 'vi-VN', value: 'vi' },
+];
+
 const page = ref(1)
 const itemsPerPage = ref(5)
 const headers: Readonly<Record<string, unknown>[]> = readonly([
@@ -121,8 +128,7 @@ const pageCount = computed(() => {
 
     <v-app-bar title="Application bar">
       <v-btn icon="mdi-alarm-light" @click="toggleTheme" />
-      <v-select v-model="$i18n.locale" :items="[{ label: 'vi', value: 'vi' }, { label: 'en', value: 'en' }]"
-        item-title="label" item-value="value" />
+      <v-select v-model="$i18n.locale" :items="languages" item-title="label" item-value="value" />
     </v-app-bar>
 
     <v-main>
