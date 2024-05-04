@@ -48,7 +48,7 @@ router.afterEach((to: RouteLocationNormalized, from: RouteLocationNormalized, fa
     }
     const toDepth = to.path.split('/').length
     const fromDepth = from.path.split('/').length
-    to.meta.transition = toDepth < fromDepth ? 'slide-right' : 'slide-left'
+    to.meta.transition = toDepth < fromDepth ? 'slide-x-reverse-transition' : 'slide-x-transition'
 })
 
 export default router;
