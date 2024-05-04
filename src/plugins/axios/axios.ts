@@ -1,3 +1,4 @@
+import { HEADER } from '@constants/api.enum';
 import axiosDefault, { type AxiosInstance } from 'axios'
 
 const axios: AxiosInstance = axiosDefault.create({
@@ -8,7 +9,7 @@ const axios: AxiosInstance = axiosDefault.create({
 axios.interceptors.request.use((config) => {
     // Do something before request is sent
     if (import.meta.env.hasOwnProperty('VITE_API_MOCK')) {
-        config.url += '.json'
+        config.url = `${config.headers.get(HEADER.MOCK_URL)?.toString()}.json`
     }
     return config;
 }, function (error) {
