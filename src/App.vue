@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import { useTheme } from 'vuetify'
+// import { useTheme } from 'vuetify'
 
-const theme = useTheme()
+// const theme = useTheme()
 
-function toggleTheme() {
-  theme.global.name.value = theme.global.current.value.dark ? 'light' : 'dark'
-}
+// function toggleTheme() {
+//   theme.global.name.value = theme.global.current.value.dark ? 'light' : 'dark'
+// }
 
 const drawer = ref(true);
 
@@ -38,7 +38,7 @@ const languages = [
 
       <v-app-bar-title>{{ $env.VITE_APP_TITLE }}</v-app-bar-title>
 
-      <v-btn icon="mdi-alarm-light" @click="toggleTheme" />
+      <!-- <v-btn icon="mdi-alarm-light" @click="toggleTheme" /> -->
 
       <v-btn color="primary">
         <v-icon icon="mdi-translate" />
@@ -57,13 +57,15 @@ const languages = [
 
     <v-main style="width: 100vw;">
 
-      <router-view v-slot="{ Component, route }">
-        <transition :name="route.meta.transition || 'fade-transition'" :mode="'out-in'">
-          <keep-alive>
-            <component :is="Component" :key="route.path" />
-          </keep-alive>
-        </transition>
-      </router-view>
+      <v-theme-provider theme="vuetify-theme">
+        <router-view v-slot="{ Component, route }">
+          <transition :name="route.meta.transition || 'fade-transition'" :mode="'out-in'">
+            <keep-alive>
+              <component :is="Component" :key="route.path" />
+            </keep-alive>
+          </transition>
+        </router-view>
+    </v-theme-provider>
 
     </v-main>
 

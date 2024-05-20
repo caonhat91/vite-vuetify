@@ -52,4 +52,6 @@ export default createI18n<[MessageSchema], FallbackLocale, false, {}>({
     messages,
     datetimeFormats,
     numberFormats,
+    missingWarn: false,
+    fallbackWarn: false
 })
