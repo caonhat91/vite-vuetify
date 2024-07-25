@@ -19,6 +19,7 @@
     "autoprefixer": "^10.4.19",
     "axios": "^1.6.8",
     "browserslist": "^4.23.0",
+    "pinia": "^2.1.7",
     "postcss": "^8.4.38",
     "sass": "^1.75.0",
     "typescript": "^5.2.2",

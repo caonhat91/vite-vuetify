@@ -37,6 +37,7 @@
       "@assets/*": ["src/assets/*"],
       "@plugins/*": ["src/plugins/*"],
       "@apis/*": ["src/apis/*"],
+      "@stores/*": ["src/stores/*"],
     },
   },
   "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue"],

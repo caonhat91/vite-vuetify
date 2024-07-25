@@ -4,7 +4,7 @@ import { fileURLToPath } from 'node:url'
 import autoprefixer from 'autoprefixer'
 
 const componentsAliases = ['atoms', 'modecules', 'organisms', 'templates', 'pages'];
-const aliases = ['constants', 'models', 'utils', 'assets', 'plugins', 'apis'];
+const aliases = ['constants', 'models', 'utils', 'assets', 'plugins', 'apis', 'stores'];
 
 const proxy: (url: string) => Record<string, string | ProxyOptions> = (url: string) => {
   return {
