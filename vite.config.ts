@@ -1,5 +1,6 @@
 import { ProxyOptions, defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
+import vueDevTools from 'vite-plugin-vue-devtools'
 import { fileURLToPath } from 'node:url'
 import autoprefixer from 'autoprefixer'
 
@@ -18,7 +19,10 @@ const proxy: (url: string) => Record<string, string | ProxyOptions> = (url: stri
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [vue()],
+  plugins: [
+    vue(),
+    vueDevTools(),
+  ],
   css: {
     postcss: {
       plugins: [

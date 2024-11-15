@@ -1,10 +1,13 @@
-import { NavigationFailure, RouteLocationNormalized, createMemoryHistory, createRouter } from 'vue-router'
+import { NavigationFailure, RouteLocationNormalized, createRouter, createWebHistory } from 'vue-router'
 
 import routes from '@constants/routes';
+import { useUserStore } from '@stores/user.store';
 
 const router = createRouter({
-    history: createMemoryHistory(),
+    history: createWebHistory(),
     routes,
+    linkActiveClass: 'active',
+    linkExactActiveClass: 'exact-active',
     scrollBehavior(to, _, savedPosition) {
         return new Promise((resolve) => {
             setTimeout(() => {
@@ -30,8 +33,9 @@ const router = createRouter({
 
 router.beforeEach((to: RouteLocationNormalized) => {
     // instead of having to check every route record with
-    // to.matched.some(record => record.meta.requiresAuth)
-    if (to.meta.requiresAuth) {
+    const { user } = useUserStore();
+    console.log('----', user)
+    if (to.meta.requiresAuth && !user) {
         // this route requires auth, check if logged in
         // if not, redirect to login page.
         return {
@@ -40,15 +44,17 @@ router.beforeEach((to: RouteLocationNormalized) => {
             query: { redirect: to.fullPath },
         }
     }
+    if (to.path === '/login' && user) {
+        return {
+            path: ''
+        }
+    }
 })
 
 router.afterEach((to: RouteLocationNormalized, from: RouteLocationNormalized, failure: NavigationFailure | void) => {
     if (failure) {
         // sendToAnalytics(to, from, failure)
     }
-    const toDepth = to.path.split('/').length
-    const fromDepth = from.path.split('/').length
-    to.meta.transition = toDepth < fromDepth ? 'slide-x-reverse-transition' : 'slide-x-transition'
 })
 
 export default router;

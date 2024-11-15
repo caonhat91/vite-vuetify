@@ -1,23 +1,34 @@
 <script setup lang="ts">
-import { ref } from 'vue';
-import { login } from '@apis/user.api';
-import { UserType } from '@models/user.model';
+import { reactive, ref } from 'vue';
+import { useUserStore } from '@stores/user.store';
+import { useRouter } from 'vue-router';
 
-const user = ref();
+const user = useUserStore();
+const router = useRouter()
+const loading = ref(false);
 
-(function () {
-    login<UserType>('admin', 'password').then((res) => {
-        console.log(res)
-        user.value = res.data.result
-    }).catch((err) => console.error(err))
-})()
+const form = reactive({
+    username: 'admin',
+    password: '1',
+})
+
+const onSubmit = () => {
+    loading.value = true;
+    user.onLogin(form.username, form.password)
+        .then(() => {
+            router.push('/')
+        }).finally(() => loading.value = false);
+}
 </script>
 
 <template>
-    <section>
-        <h1>Login page</h1>
-        <pre>{{ user }}</pre>
-    </section>
+        <v-card>
+            <v-form fast-fail @submit.prevent.stop="onSubmit" novalidate autocomplete="off">
+                <v-text-field label="Username:" v-model="form.username" autofocus />
+                <v-text-field label="Password:" v-model="form.password" />
+                <v-btn type="submit" :loading="loading">Login</v-btn>
+            </v-form>
+        </v-card>
 </template>
 
 <style lang="scss"></style>

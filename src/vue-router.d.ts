@@ -10,6 +10,6 @@ declare module 'vue-router' {
         isAdmin?: boolean
         // must be declared by every route
         requiresAuth: boolean,
-        transition: string,
+        transition?: string,
     }
 }

@@ -1,7 +1,18 @@
 <script setup lang="ts">
 import { ref } from 'vue';
+import DateInput from '@modecules/date-input/DateInput.vue';
+import { VDateInput } from 'vuetify/labs/VDateInput';
+import QuillEditor from '@modecules/wysiwyg/QuillEditor.vue';
 
 const show = ref(false);
+const date = ref(null);
+const dateRules = [
+    (value: unknown) => {
+        if (!value) return 'Date is required.'
+
+        return true
+    },
+]
 </script>
 
 <template>
@@ -39,6 +50,26 @@ const show = ref(false);
                 </v-col>
             </v-row>
         </v-container>
+
+        <v-container>
+            <div>
+                <v-date-input hide-actions show-adjacent-months persistent-clear clearable placeholder="yyyy-mm-dd"
+                    label="Date2:"></v-date-input>
+            </div>
+        </v-container>
+
+        <v-container>
+            <div>
+                <date-input v-model="date" :rules="dateRules" label="Date" prepend-icon="mdi-calendar" clearable />
+            </div>
+        </v-container>
+
+        <v-container>
+            <v-text-field label="Text" disabled />
+        </v-container>
+
+        <QuillEditor />
+
     </section>
 </template>
 

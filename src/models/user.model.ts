@@ -1,7 +1,7 @@
-export type UserType = {
-    code: number,
-    message: null | string,
-    result: {
-        jwt: string
-    }
+import { APIResponse } from "./base.model"
+
+export type User = {
+    jwt: string
 }
+
+export interface LoginResponse extends APIResponse<User> { }

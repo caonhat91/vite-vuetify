@@ -16,17 +16,19 @@
     "@mdi/font": "^7.4.47",
     "@types/node": "^20.12.7",
     "@vitejs/plugin-vue": "^5.0.4",
+    "@vueup/vue-quill": "^1.2.0",
     "autoprefixer": "^10.4.19",
     "axios": "^1.6.8",
     "browserslist": "^4.23.0",
     "pinia": "^2.1.7",
     "postcss": "^8.4.38",
-    "sass": "^1.75.0",
+    "sass": "^1.79.3",
     "typescript": "^5.2.2",
     "vite": "^5.2.0",
+    "vite-plugin-vue-devtools": "^7.4.6",
     "vue-i18n": "^9.13.1",
     "vue-router": "^4.3.2",
     "vue-tsc": "^2.0.6",
-    "vuetify": "^3.5.17"
+    "vuetify": "^3.7.2"
   }
 }
